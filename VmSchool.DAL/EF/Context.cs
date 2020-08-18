@@ -8,7 +8,8 @@ namespace VmSchool.DAL.EF
 {
     public class Context : DbContext
     {
-        public DbSet<News> News { get; set; }
+        public DbSet<ArticleCategory> ArticleCategories { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

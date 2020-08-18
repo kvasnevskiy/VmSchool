@@ -1,0 +1,12 @@
+﻿@using VmSchool.Models
+@model ArticleModel
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="container">
+    <p class="h4">@Model.Title</p>
+    <small class="text-muted">@Model.CreateDate.ToString("yyyy-MM-dd")</small>
+    <p class="card-text">@Model.Text</p>
+</div>
