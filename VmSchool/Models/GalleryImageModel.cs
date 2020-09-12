@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace VmSchool.DAL.Entities
+namespace VmSchool.Models
 {
-    public class GalleryImage
+    public class GalleryImageModel
     {
         public int Id { get; set; }
         public string ThumbnailPath { get; set; }
         public string ImagePath { get; set; }
-        public Gallery Gallery { get; set; }
+        public GalleryModel Gallery { get; set; }
     }
 }

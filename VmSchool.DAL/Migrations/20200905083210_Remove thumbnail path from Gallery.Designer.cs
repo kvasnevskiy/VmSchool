@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VmSchool.DAL.EF;
 
 namespace VmSchool.DAL.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20200905083210_Remove thumbnail path from Gallery")]
+    partial class RemovethumbnailpathfromGallery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,9 +72,6 @@ namespace VmSchool.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -113,7 +112,7 @@ namespace VmSchool.DAL.Migrations
 
             modelBuilder.Entity("VmSchool.DAL.Entities.GalleryImage", b =>
                 {
-                    b.HasOne("VmSchool.DAL.Entities.Gallery", "Gallery")
+                    b.HasOne("VmSchool.DAL.Entities.Gallery", null)
                         .WithMany("Images")
                         .HasForeignKey("GalleryId");
                 });

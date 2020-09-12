@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VmSchool.DAL.Entities
+namespace VmSchool.BL.Entities
 {
     public class GalleryImage
     {

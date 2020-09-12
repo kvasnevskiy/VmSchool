@@ -2,7 +2,8 @@
   {
     "outputFileName": "wwwroot/vendor.min.css",
     "inputFiles": [
-      "node_modules/bootstrap/dist/css/bootstrap.css"
+      "node_modules/bootstrap/dist/css/bootstrap.css",
+      "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css"
     ],
     "minify": { "enabled": false }
   },
@@ -10,7 +11,8 @@
     "outputFileName": "wwwroot/vendor.min.js",
     "inputFiles": [
       "node_modules/jquery/dist/jquery.js",
-      "node_modules/bootstrap/dist/js/bootstrap.js"
+      "node_modules/bootstrap/dist/js/bootstrap.js",
+      "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js"
     ],
     "minify": { "enabled": false }
   }

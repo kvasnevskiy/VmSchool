@@ -1,0 +1,23 @@
+﻿@using VmSchool.Models
+@model GalleryModel
+
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @*<div class="col-lg-2 col-md-3 col-4 thumb">
+            <img class="img-fluid" height="256" src="~/Images/Galleries/back.png" alt="...">
+        </div>*@
+        @foreach (var image in Model.Images)
+        {
+            <div class="col-lg-2 col-md-3 col-4 thumb">
+                <a data-fancybox="gallery" href="~/@image.ImagePath"> 
+                    <img class="img-fluid" src="~/@image.ThumbnailPath" alt="..."> 
+                </a>
+            </div>
+        }
+
+    </div>
+</div>
