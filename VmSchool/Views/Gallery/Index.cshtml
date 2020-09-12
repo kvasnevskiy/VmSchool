@@ -8,16 +8,16 @@
 
 <div class="container-fluid">
     <div class="row">
-
         @foreach (var gallery in Model.Galleries)
         {
-            <div class="col-lg-2 col-md-3 col-4 thumb d-flex justify-content-center">
-                <a href="@Url.Action("ShowGallery","Gallery", new { id = gallery.Id })">
-                    <img class="img-fluid" src="@gallery.ThumbnailPath" alt="...">
-                    <h5 class="text-center text-truncate">@gallery.Title</h5>
-                </a>
+            <div class="card" style="width: 18rem; margin: 10px;">
+                <img class="img-fluid" src="@gallery.ThumbnailPath" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@gallery.Title</h5>
+                    <p class="card-text">@gallery.Description</p>
+                    <a href="@Url.Action("ShowGallery","Gallery", new { id = gallery.Id })" class="btn btn-primary">Детальніше...</a>
+                </div>
             </div>
         }
-
     </div>
 </div>

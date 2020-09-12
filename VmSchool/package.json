@@ -5,6 +5,7 @@
   "devDependencies": {
     "bootstrap": "4.5.1",
     "jquery": "3.5.1",
-    "@fancyapps/fancybox": "3.5.7"
+    "@fancyapps/fancybox": "3.5.7",
+    "jquery-mosaic": "0.15.3"
   }
 }

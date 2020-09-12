@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - VmSchoolSite</title>
     <link rel="stylesheet" href="~/vendor.min.css" />
     <link rel="stylesheet" href="~/style.css" />
+    <!-- #region Styles -->
+    @RenderSection("Styles", required: false)
+    <!-- #endregion -->
 </head>
 <body>
     <!-- #region Main Menu -->
@@ -38,10 +41,8 @@
     </main>
     <!-- #endregion -->
     <!-- #region Footer -->
-    <footer class="border-top footer text-muted container-fluid">
-        <div class="d-flex justify-content-center">
-            &copy; 2020 - Всі права захищені
-        </div>
+    <footer class="border-top footer text-muted">
+        &copy; 2020 - Всі права захищені
     </footer>
     <!-- #endregion -->
     <!-- #region Scripts -->

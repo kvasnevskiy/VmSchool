@@ -5,19 +5,32 @@
     ViewData["Title"] = @Model.Title;
 }
 
-<div class="container-fluid">
-    <div class="row">
-        @*<div class="col-lg-2 col-md-3 col-4 thumb">
-            <img class="img-fluid" height="256" src="~/Images/Galleries/back.png" alt="...">
-        </div>*@
+@section Styles
+{
+    <link rel="stylesheet" href="~/jquery.mosaic.css" />
+}
+
+@section Scripts
+{
+    <script src="~/jquery.mosaic.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#gallery-images').Mosaic({
+                maxRowHeight: 400,
+                maxRowHeightPolicy: 'oversize',
+                innerGap: 10
+            });
+        });
+    </script>
+}
+
+<div class="container-fluid gallery-content">
+    <div id="gallery-images">
         @foreach (var image in Model.Images)
         {
-            <div class="col-lg-2 col-md-3 col-4 thumb">
-                <a data-fancybox="gallery" href="~/@image.ImagePath"> 
-                    <img class="img-fluid" src="~/@image.ThumbnailPath" alt="..."> 
-                </a>
-            </div>
+            <a data-fancybox="gallery" href="~/@image.ImagePath">
+                <img class="img-fluid" src="~/@image.ThumbnailPath" alt="...">
+            </a>
         }
-
     </div>
 </div>
