@@ -49,40 +49,11 @@ namespace VmSchool.Controllers
                     return RedirectToAction("Index", "Admin");
                 }
 
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                ModelState.AddModelError("", "Некоректні логін та(або) пароль");
             }
 
             return View(model);
         }
-
-        //[HttpGet]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Register(RegisterModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
-        //        if (user == null)
-        //        {
-        //            // добавляем пользователя в бд
-        //            db.Users.Add(new User { Email = model.Email, Password = model.Password });
-        //            await db.SaveChangesAsync();
-
-        //            await Authenticate(model.Email); // аутентификация
-
-        //            return RedirectToAction("Index", "Home");
-        //        }
-        //        else
-        //            ModelState.AddModelError("", "Некорректные логин и(или) пароль");
-        //    }
-        //    return View(model);
-        //}
 
         private async Task Authenticate(string userName)
         {
@@ -91,8 +62,10 @@ namespace VmSchool.Controllers
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
             };
+
             // создаем объект ClaimsIdentity
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
             // установка аутентификационных куки
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
