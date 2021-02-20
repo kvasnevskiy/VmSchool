@@ -13,7 +13,7 @@ namespace VmSchool.DAL.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=VmSchoolDB;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=VmSchoolDB;Trusted_Connection=True;");
         }
     }
 }

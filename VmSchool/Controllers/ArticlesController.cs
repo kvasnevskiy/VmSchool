@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using VmSchool.BL;
+using VmSchool.BL.Entities;
 using VmSchool.Models;
 using VmSchool.ViewModels;
 
@@ -13,9 +16,11 @@ namespace VmSchool.Controllers
     public class ArticlesController : Controller
     {
         private readonly Mapper mapper;
+        private readonly BusinessLogicManagerModel blManager;
 
         public ArticlesController()
         {
+            blManager = new BusinessLogicManagerModel();
             mapper = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<BL.Entities.ArticleCategory, ArticleCategoryModel>();
@@ -26,7 +31,6 @@ namespace VmSchool.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            using var blManager = new BusinessLogicManagerModel();
             var res = mapper.Map<IEnumerable<ArticleModel>>(
                 blManager.GetArticles((int) DefaultArticleCategory.NewsCategory));
             return View(new ArticlesViewModel
@@ -38,23 +42,44 @@ namespace VmSchool.Controllers
         [HttpGet]
         public IActionResult ShowArticle(int id)
         {
-            using var blManager = new BusinessLogicManagerModel();
             return View("Article", mapper.Map<ArticleModel>(blManager.GetArticle(id)));
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        [Authorize]
+        public IActionResult Create()
         {
-            if (id != null)
-            {
-                using var blManager = new BusinessLogicManagerModel();
+            var t = mapper.Map<IEnumerable<ArticleCategoryModel>>(blManager.GetArticleCategories());
+            ViewBag.ArticleCategories = new SelectList(mapper.Map<IEnumerable<ArticleCategoryModel>>(blManager.GetArticleCategories()), "Id", "Name");
+            return View("NewArticle");
+        }
 
-                //ArticleModel user = await db.Users.FirstOrDefaultAsync(p => p.Id == id);
-                //if (user != null)
-                //    return View(user);
+        [HttpPost]
+        [Authorize]
+        public IActionResult Create(Article article)
+        {
+            if (article != null)
+            {
+                article.CreateDate = DateTime.Now;
+                blManager.CreateArticle(article);
             }
 
-            return NotFound();
+            return Ok();
         }
+
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id != null)
+        //    {
+        //        using var blManager = new BusinessLogicManagerModel();
+
+        //        //ArticleModel user = await db.Users.FirstOrDefaultAsync(p => p.Id == id);
+        //        //if (user != null)
+        //        //    return View(user);
+        //    }
+
+        //    return NotFound();
+        //}
 
         //[HttpPost]
         //public async Task<IActionResult> Edit(User user)

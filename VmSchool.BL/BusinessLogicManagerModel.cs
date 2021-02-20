@@ -22,6 +22,7 @@ namespace VmSchool.BL
                 {
                     cfg.CreateMap<DAL.Entities.ArticleCategory, VmSchool.BL.Entities.ArticleCategory>();
                     cfg.CreateMap<DAL.Entities.Article, VmSchool.BL.Entities.Article>();
+                    cfg.CreateMap<BL.Entities.Article, DAL.Entities.Article>();
                     cfg.CreateMap<DAL.Entities.Gallery, VmSchool.BL.Entities.Gallery>();
                     cfg.CreateMap<DAL.Entities.GalleryImage, VmSchool.BL.Entities.GalleryImage>();
                     cfg.CreateMap<DAL.Entities.User, VmSchool.BL.Entities.User>();
@@ -38,15 +39,18 @@ namespace VmSchool.BL
             return mapper.Map<Article>(databaseManager.Articles.Read(id));
         }
 
-        public void CreateArticle(VmSchool.BL.Entities.Article article)
+        public BL.Entities.Article CreateArticle(BL.Entities.Article article)
         {
-            //var newArticle = new DAL.Entities.Article
-            //{
-            //    Title = article.Title,
-            //    Category = article.Category.,
-            //    CreateDate = DateTime.Now,
-            //    Description = article.Description
-            //};
+            var newArticle = mapper.Map<VmSchool.DAL.Entities.Article>(article);
+            databaseManager.Articles.Create(newArticle);
+            databaseManager.Save();
+
+            return mapper.Map<BL.Entities.Article>(newArticle);
+        }
+
+        public IEnumerable<VmSchool.BL.Entities.ArticleCategory> GetArticleCategories()
+        {
+            return mapper.Map<IEnumerable<ArticleCategory>>(databaseManager.ArticleCategories.ReadAll());
         }
 
         public IEnumerable<VmSchool.BL.Entities.Gallery> GetGalleries()

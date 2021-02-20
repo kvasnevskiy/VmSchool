@@ -7,6 +7,7 @@ namespace VmSchool.DAL.Interfaces
     {
         IDatabaseRepository<User> Users { get; }
         IDatabaseRepository<Article> Articles { get; }
+        IDatabaseRepository<ArticleCategory> ArticleCategories { get; }
         IDatabaseRepository<Gallery> Galleries { get; }
         IDatabaseRepository<GalleryImage> GalleryImages { get; }
         void Save();

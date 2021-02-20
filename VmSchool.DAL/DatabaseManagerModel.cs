@@ -17,6 +17,7 @@ namespace VmSchool.DAL
 
         public IDatabaseRepository<User> Users { get; }
         public IDatabaseRepository<Article> Articles { get; }
+        public IDatabaseRepository<ArticleCategory> ArticleCategories { get; }
         public IDatabaseRepository<Gallery> Galleries { get; }
         public IDatabaseRepository<GalleryImage> GalleryImages { get; }
 
@@ -29,6 +30,7 @@ namespace VmSchool.DAL
             db = new Context();
             Users = new UserRepository(db);
             Articles = new ArticleRepository(db);
+            ArticleCategories = new ArticleCategoriesRepository(db);
             Galleries = new GalleryRepository(db);
             GalleryImages = new GalleryImageRepository(db);
         }
