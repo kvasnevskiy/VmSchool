@@ -31,6 +31,8 @@ namespace VmSchool.Controllers
         {
             using var blManager = new BusinessLogicManagerModel();
 
+            var res = mapper.Map<IEnumerable<GalleryModel>>(blManager.GetGalleries());
+
             return View(new GalleryViewModel()
             {
                 Galleries = mapper.Map<IEnumerable<GalleryModel>>(blManager.GetGalleries())

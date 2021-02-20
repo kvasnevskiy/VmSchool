@@ -5,8 +5,8 @@
     ViewData["Title"] = @Model.Title;
 }
 
-<div class="container">
+<div class="container" style="margin: 15pt">
     <p class="h4">@Model.Title</p>
     <small class="text-muted">@Model.CreateDate.ToString("yyyy-MM-dd")</small>
-    <p class="card-text">@Model.Text</p>
+    <div>@Model.Text</div>
 </div>

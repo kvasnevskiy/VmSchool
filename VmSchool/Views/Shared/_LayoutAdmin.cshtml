@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - VmSchoolSite</title>
+    <link rel="stylesheet" href="~/vendor.min.css" />
+    <link rel="stylesheet" href="~/style.css" />
+    <!-- #region Styles -->
+    @RenderSection("Styles", required: false)
+    <!-- #endregion -->
+</head>
+<body>
+    <!-- #region Main Menu -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Панель адміністратора</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Articles" asp-action="Index">Статті</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="" asp-controller="Gallery" asp-action="Index">Галерея</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- #endregion -->
+    <!-- #region Content -->
+    <main role="main" class="mt-auto">
+        @RenderBody()
+    </main>
+    <!-- #endregion -->
+    <!-- #region Footer -->
+    <footer class="border-top footer text-muted">
+        &copy; 2020 - Всі права захищені
+    </footer>
+    <!-- #endregion -->
+    <!-- #region Scripts -->
+    <script src="~/vendor.min.js"></script>
+    @RenderSection("Scripts", required: false)
+    <!-- #endregion -->
+</body>
+</html>

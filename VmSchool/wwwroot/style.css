@@ -1,29 +1,10 @@
-﻿.thumb img:hover {
-    -webkit-filter: grayscale(1);
-    filter: grayscale(1);
-    cursor: pointer;
-}
-
-.thumb {
-    margin: 10px;
-    position: relative;
-    width: 10%; /* The size you want */
+﻿.carousel-item img {
+    height: 512px;
+    object-fit: cover;
 }
 
 .gallery-content {
     margin-top: 10pt;
-}
-
-.thumb img {
-    -webkit-filter: grayscale(0);
-    filter: none;
-    border-radius: 5px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 5px;
-    width:  256px;
-    height: 256px;
-    object-fit: cover;
 }
 
 .footer {
@@ -34,4 +15,16 @@
     padding: 10pt 0;
     font-weight: 400;
     line-height: 1em;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-label-group {
+    position: relative;
+    margin-bottom: 1rem;
 }
