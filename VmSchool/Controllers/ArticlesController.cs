@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using VmSchool.BL;
-using VmSchool.BL.Entities;
 using VmSchool.Models;
 using VmSchool.ViewModels;
 
@@ -23,15 +19,15 @@ namespace VmSchool.Controllers
             {
                 cfg.CreateMap<BL.Entities.ArticleCategory, ArticleCategoryModel>();
                 cfg.CreateMap<BL.Entities.Article, ArticleModel>();
+                cfg.CreateMap<ArticleModel, BL.Entities.Article>();
             }));
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult News()
         {
-            var res = mapper.Map<IEnumerable<ArticleModel>>(
-                blManager.GetArticles((int) DefaultArticleCategory.NewsCategory));
-            return View(new ArticlesViewModel
+            return View("News",
+                new ArticlesViewModel
             {
                 Articles = mapper.Map<IEnumerable<ArticleModel>>(blManager.GetArticles((int)DefaultArticleCategory.NewsCategory))
             });
@@ -47,44 +43,63 @@ namespace VmSchool.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            var t = mapper.Map<IEnumerable<ArticleCategoryModel>>(blManager.GetArticleCategories());
             ViewBag.ArticleCategories = new SelectList(mapper.Map<IEnumerable<ArticleCategoryModel>>(blManager.GetArticleCategories()), "Id", "Name");
-            return View("NewArticle");
+            return View("ArticleEdit");
         }
 
         [HttpPost]
         [Authorize]
-        public IActionResult Create(Article article)
+        public IActionResult Update(ArticleModel article)
         {
             if (article != null)
             {
-                article.CreateDate = DateTime.Now;
-                blManager.CreateArticle(article);
+                if (article.Id > 0)
+                {
+                    blManager.UpdateArticle(mapper.Map<BL.Entities.Article>(article));
+                }
+                else
+                {
+                    article.CreateDate = DateTime.Now;
+                    blManager.CreateArticle(mapper.Map<BL.Entities.Article>(article));
+                }
             }
 
-            return Ok();
+            return RedirectToAction("Management");
         }
 
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id != null)
-        //    {
-        //        using var blManager = new BusinessLogicManagerModel();
+        [HttpPost]
+        [Authorize]
+        public IActionResult Cancel()
+        {
+            return RedirectToAction("Management");
+        }
 
-        //        //ArticleModel user = await db.Users.FirstOrDefaultAsync(p => p.Id == id);
-        //        //if (user != null)
-        //        //    return View(user);
-        //    }
+        [HttpGet]
+        [Authorize]
+        public IActionResult Management()
+        {
+            return View("Management", new ArticlesViewModel
+            {
+                Articles = mapper.Map<IEnumerable<ArticleModel>>(blManager.GetArticles())
+            });
+        }
 
-        //    return NotFound();
-        //}
+        [HttpGet]
+        [Authorize]
+        public IActionResult Edit(int id)
+        {
+            ViewBag.ArticleCategories = new SelectList(mapper.Map<IEnumerable<ArticleCategoryModel>>(blManager.GetArticleCategories()), "Id", "Name");
+            
+            return View("ArticleEdit", mapper.Map<ArticleModel>(blManager.GetArticle(id)));
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(User user)
-        //{
-        //    db.Users.Update(user);
-        //    await db.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
+        [HttpGet]
+        [Authorize]
+        public IActionResult Delete(int id)
+        {
+            blManager.DeleteArticle(id);
+
+            return RedirectToAction("Management");
+        }
     }
 }

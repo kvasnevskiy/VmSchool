@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+
+@model VmSchool.ViewModels.ArticlesViewModel
+
+<div class="p-2">
+    <button type="button" class="btn btn-success"  onclick="location.href='@Url.Action("Create", "Articles")'">Створити</button>
+</div>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Дата створення</th>
+            <th>Категорія</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var article in Model.Articles)
+        {
+            <tr>
+                <td>@article.Title</td>
+                <td>@article.CreateDate</td>
+                <td>@article.Category.Name</td>
+                <td class="text-lg-right">
+                    <button type="button" class="btn btn-warning" onclick="location.href='@Url.Action("Edit", "Articles", new {id = article.Id})'">Редагувати</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Articles", new {id = article.Id})'">Видалити</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

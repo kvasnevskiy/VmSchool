@@ -11,5 +11,6 @@ namespace VmSchool.Models
         public DateTime CreateDate { get; set; }
         public string ThumbnailPath { get; set; }
         public int CategoryId { get; set; }
+        public ArticleCategoryModel Category { get; set; }
     }
 }

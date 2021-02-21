@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/vendor.min.css" />
     <link rel="stylesheet" href="~/style.css" />
     <!-- #region Styles -->
-    @RenderSection("Styles", required: false)
+    @await RenderSectionAsync("Styles", required: false)
     <!-- #endregion -->
 </head>
 <body>
@@ -26,7 +26,7 @@
     <!-- #endregion -->
     <!-- #region Scripts -->
     <script src="~/vendor.min.js"></script>
-    @RenderSection("Scripts", required: false)
-    <!-- #endregion -->
+    @await RenderSectionAsync("Scripts", required: false)
+<!-- #endregion -->
 </body>
 </html>

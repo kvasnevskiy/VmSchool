@@ -14,7 +14,11 @@ namespace VmSchool.Controllers
 
         public HomeController()
         {
-            mapper = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<BL.Entities.Article, ArticleModel>()));
+            mapper = new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<BL.Entities.Article, ArticleModel>();
+                cfg.CreateMap<BL.Entities.ArticleCategory, ArticleCategoryModel>();
+            }));
             blManager = new BusinessLogicManagerModel();
         }
 

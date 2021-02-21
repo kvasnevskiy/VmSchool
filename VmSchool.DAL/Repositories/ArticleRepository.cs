@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using VmSchool.DAL.EF;
 using VmSchool.DAL.Entities;
 using VmSchool.DAL.Interfaces;
@@ -19,17 +20,17 @@ namespace VmSchool.DAL.Repositories
 
         public IEnumerable<Article> ReadAll()
         {
-            return db.Articles;
+            return db.Articles.Include(i => i.Category);
         }
 
         public Article Read(int id)
         {
-            return db.Articles.Find(id);
+            return db.Articles.Include(i => i.Category).FirstOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Article> ReadByExpression(Expression<Func<Article, bool>> predicate)
         {
-            return db.Articles.Where(predicate);
+            return db.Articles.Where(predicate).Include(i => i.Category);
         }
 
         public void Create(Article item)

@@ -2,7 +2,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">@Html.Raw(@Model)</a>
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">@Html.Raw(@Model)</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,7 +13,7 @@
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Articles" asp-action="Index">Новини</a>
+                    <a class="nav-link" asp-area="" asp-controller="Articles" asp-action="News">Новини</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Gallery" asp-action="Index">Галерея</a>

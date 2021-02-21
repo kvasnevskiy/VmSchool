@@ -34,6 +34,12 @@ namespace VmSchool.BL
             SettingsManager = new SettingsManagerModel(databaseManager);
         }
 
+        public IEnumerable<VmSchool.BL.Entities.Article> GetArticles()
+        {
+            var x = mapper.Map<IEnumerable<Article>>(databaseManager.Articles.ReadAll());
+            return mapper.Map<IEnumerable<Article>>(databaseManager.Articles.ReadAll());
+        }
+
         public IEnumerable<VmSchool.BL.Entities.Article> GetArticles(int categoryId)
         {
             return mapper.Map<IEnumerable<Article>>(databaseManager.Articles.ReadByExpression(a => a.Category.Id == categoryId));
@@ -51,6 +57,21 @@ namespace VmSchool.BL
             databaseManager.Save();
 
             return mapper.Map<BL.Entities.Article>(newArticle);
+        }
+
+        public BL.Entities.Article UpdateArticle(BL.Entities.Article article)
+        {
+            var updatedArticle = mapper.Map<VmSchool.DAL.Entities.Article>(article);
+            databaseManager.Articles.Update(updatedArticle);
+            databaseManager.Save();
+
+            return mapper.Map<BL.Entities.Article>(updatedArticle);
+        }
+
+        public void DeleteArticle(int id)
+        {
+            databaseManager.Articles.Delete(id);
+            databaseManager.Save();
         }
 
         public IEnumerable<VmSchool.BL.Entities.ArticleCategory> GetArticleCategories()

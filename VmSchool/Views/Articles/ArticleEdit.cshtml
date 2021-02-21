@@ -82,6 +82,7 @@
         <div class="form-group">
             <textarea id="editor" asp-for="Text"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Зберегти</button>
+        <button type="submit" class="btn btn-success" asp-action="Update" asp-route-id="@Model?.Id">Зберегти</button>
+        <button type="submit" class="btn btn-warning" asp-action="Cancel">Відміна</button>
     </form>
 </div>
