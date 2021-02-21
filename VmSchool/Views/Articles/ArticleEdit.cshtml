@@ -73,6 +73,9 @@
         <div class="form-group">
             <input asp-for="Title" type="text" class="form-control" placeholder="Назва">
         </div>
+        <div class="form-group d-none">
+            <input asp-for="CreateDate" type="datetime-local" class="form-control" readonly>
+        </div>
         <div class="form-group">
             <select asp-for="CategoryId" asp-items="ViewBag.ArticleCategories" class="form-control"></select>
         </div>
