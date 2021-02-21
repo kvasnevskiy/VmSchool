@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using AutoMapper;
 using VmSchool.BL.Entities;
+using VmSchool.BL.Managers.Settings;
 using VmSchool.DAL;
 using VmSchool.DAL.Interfaces;
 
@@ -13,6 +13,8 @@ namespace VmSchool.BL
     {
         private readonly IDatabaseManager databaseManager;
         private readonly Mapper mapper;
+
+        public ISettingsManager SettingsManager { get; }
 
         public BusinessLogicManagerModel()
         {
@@ -26,7 +28,10 @@ namespace VmSchool.BL
                     cfg.CreateMap<DAL.Entities.Gallery, VmSchool.BL.Entities.Gallery>();
                     cfg.CreateMap<DAL.Entities.GalleryImage, VmSchool.BL.Entities.GalleryImage>();
                     cfg.CreateMap<DAL.Entities.User, VmSchool.BL.Entities.User>();
+                    cfg.CreateMap<DAL.Entities.Setting, VmSchool.BL.Entities.Setting>();
                 }));
+
+            SettingsManager = new SettingsManagerModel(databaseManager);
         }
 
         public IEnumerable<VmSchool.BL.Entities.Article> GetArticles(int categoryId)

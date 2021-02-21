@@ -11,7 +11,7 @@ using VmSchool.ViewModels;
 
 namespace VmSchool.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly Mapper mapper;
 

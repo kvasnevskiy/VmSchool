@@ -10,6 +10,7 @@ namespace VmSchool.DAL.EF
         public DbSet<Article> Articles { get; set; }
         public DbSet<Gallery> Galleries { get; set; }
         public DbSet<GalleryImage> GalleryImages { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -8,7 +8,7 @@ using VmSchool.ViewModels;
 
 namespace VmSchool.Controllers
 {
-    public class GalleryController : Controller
+    public class GalleryController : BaseController
     {
         private readonly Mapper mapper;
 
@@ -29,8 +29,6 @@ namespace VmSchool.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            using var blManager = new BusinessLogicManagerModel();
-
             var res = mapper.Map<IEnumerable<GalleryModel>>(blManager.GetGalleries());
 
             return View(new GalleryViewModel()
@@ -42,7 +40,6 @@ namespace VmSchool.Controllers
         [HttpGet]
         public IActionResult ShowGallery(int id)
         {
-            using var blManager = new BusinessLogicManagerModel();
             return View("Gallery", mapper.Map<GalleryModel>(blManager.GetGallery(id)));
         }
     }

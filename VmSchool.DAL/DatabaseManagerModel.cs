@@ -20,6 +20,7 @@ namespace VmSchool.DAL
         public IDatabaseRepository<ArticleCategory> ArticleCategories { get; }
         public IDatabaseRepository<Gallery> Galleries { get; }
         public IDatabaseRepository<GalleryImage> GalleryImages { get; }
+        public IDatabaseRepository<Setting> Settings { get; }
 
         #endregion
 
@@ -33,6 +34,7 @@ namespace VmSchool.DAL
             ArticleCategories = new ArticleCategoriesRepository(db);
             Galleries = new GalleryRepository(db);
             GalleryImages = new GalleryImageRepository(db);
+            Settings = new SettingsRepository(db);
         }
 
         #endregion

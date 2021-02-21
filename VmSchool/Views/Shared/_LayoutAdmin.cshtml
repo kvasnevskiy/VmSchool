@@ -42,7 +42,7 @@
     <!-- #endregion -->
     <!-- #region Footer -->
     <footer class="border-top footer text-muted">
-        &copy; 2020 - Всі права захищені
+        @Html.Raw(string.Format(@ViewData["Copyright"].ToString() ?? string.Empty, @DateTime.Now.ToString("yyyy")))
     </footer>
     <!-- #endregion -->
     <!-- #region Scripts -->

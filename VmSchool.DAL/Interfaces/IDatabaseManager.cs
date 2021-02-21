@@ -10,6 +10,7 @@ namespace VmSchool.DAL.Interfaces
         IDatabaseRepository<ArticleCategory> ArticleCategories { get; }
         IDatabaseRepository<Gallery> Galleries { get; }
         IDatabaseRepository<GalleryImage> GalleryImages { get; }
+        IDatabaseRepository<Setting> Settings { get; }
         void Save();
     }
 }

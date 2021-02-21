@@ -13,14 +13,12 @@ using VmSchool.ViewModels;
 
 namespace VmSchool.Controllers
 {
-    public class ArticlesController : Controller
+    public class ArticlesController : BaseController
     {
         private readonly Mapper mapper;
-        private readonly BusinessLogicManagerModel blManager;
 
         public ArticlesController()
         {
-            blManager = new BusinessLogicManagerModel();
             mapper = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<BL.Entities.ArticleCategory, ArticleCategoryModel>();

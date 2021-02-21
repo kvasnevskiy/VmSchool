@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
 
 namespace VmSchool.Controllers
 {
-    public class AboutController : Controller
+    public class AboutController : BaseController
     {
-        private readonly Mapper mapper;
-
         public AboutController()
         {
             
