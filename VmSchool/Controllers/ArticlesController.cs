@@ -36,7 +36,16 @@ namespace VmSchool.Controllers
         [HttpGet]
         public IActionResult ShowArticle(int id)
         {
-            return View("Article", mapper.Map<ArticleModel>(blManager.GetArticle(id)));
+            var article = blManager.GetArticle(id);
+
+            if (article != null)
+            {
+                return View("Article", mapper.Map<ArticleModel>(article));
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet]
